@@ -38,6 +38,13 @@ nav {
     font-weight: bold;
     color: #667eea;
     text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
 }
 
 .logo span {
