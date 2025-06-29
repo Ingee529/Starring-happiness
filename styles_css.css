@@ -423,3 +423,6 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.right-nav {
+  margin-left: auto;
+}
