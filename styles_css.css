@@ -110,20 +110,54 @@ main {
 
 .cta-button {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(102, 126, 234, 0.3));
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+}
+
+.cta-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.cta-button:hover:before {
+    left: 100%;
 }
 
 .cta-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2), rgba(102, 126, 234, 0.4));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Content Pages */
