@@ -8,7 +8,7 @@ body {
     font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #656765 0%, #4a4c4a 100%);
     min-height: 100vh;
 }
 
@@ -36,7 +36,7 @@ nav {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #667eea;
+    color: #656765;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -75,7 +75,7 @@ nav {
 
 .nav-links > li > a:hover,
 .nav-links > li > a.active {
-    color: #667eea;
+    color: #656765;
 }
 
 /* Dropdown Menu Styles */
@@ -120,8 +120,8 @@ nav {
 }
 
 .dropdown-menu a:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background: rgba(101, 103, 101, 0.1);
+    color: #656765;
     transform: translateX(5px);
 }
 
@@ -192,7 +192,7 @@ main {
 
 .cta-button {
     display: inline-block;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(102, 126, 234, 0.3));
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(101, 103, 101, 0.3));
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -205,7 +205,7 @@ main {
     overflow: hidden;
     background-size: 200% 200%;
     animation: gradientShift 3s ease-in-out infinite;
-    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 32px rgba(101, 103, 101, 0.3);
 }
 
 .cta-button:before {
@@ -224,9 +224,9 @@ main {
 }
 
 .cta-button:hover {
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2), rgba(102, 126, 234, 0.4));
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2), rgba(101, 103, 101, 0.4));
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 12px 40px rgba(101, 103, 101, 0.4);
     border-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -305,7 +305,7 @@ main {
 
 .price {
     font-size: 2rem;
-    color: #667eea;
+    color: #656765;
     font-weight: bold;
     margin: 1rem 0;
 }
@@ -321,14 +321,14 @@ main {
 
 .faq-question {
     padding: 1.5rem;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(101, 103, 101, 0.1);
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease;
 }
 
 .faq-question:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(101, 103, 101, 0.2);
 }
 
 .faq-answer {
@@ -372,7 +372,7 @@ main {
 }
 
 .submit-btn {
-    background: #667eea;
+    background: #656765;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -384,7 +384,7 @@ main {
 }
 
 .submit-btn:hover {
-    background: #5a6fd8;
+    background: #545654;
     transform: translateY(-2px);
 }
 
