@@ -10,7 +10,19 @@ function showPage(pageId) {
     // 更新導航連結狀態
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => link.classList.remove('active'));
-    event.target.classList.add('active');
+    
+    // 如果是首頁，則將首頁導航設為active
+    if (pageId === 'home') {
+        const homeLink = document.querySelector('.nav-links a[onclick*="home"]');
+        if (homeLink) {
+            homeLink.classList.add('active');
+        }
+    } else {
+        // 其他頁面則設定對應的導航為active
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+    }
 }
 
 // FAQ展開/摺疊功能
