@@ -439,8 +439,8 @@ main {
 
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: #FCFAF2;
+    color: #434343;
     text-align: center;
     padding: 2rem 0;
     backdrop-filter: blur(10px);
