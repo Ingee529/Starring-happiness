@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+/* Header - 動態延伸的導航列 */
 header {
     background: #434343;
     backdrop-filter: blur(10px);
@@ -22,6 +22,14 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    /* 設定過渡效果，讓header本身可以延伸 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+}
+
+/* 當有dropdown hover時，讓header延伸 */
+header:has(.dropdown:hover) {
+    padding-bottom: 350px; /* 再增加一些高度，確保最後一個選單項目完全顯示 */
 }
 
 nav {
@@ -29,8 +37,9 @@ nav {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* 改為頂部對齊 */
     padding: 0 2rem;
+    position: relative;
 }
 
 .logo {
@@ -79,79 +88,117 @@ nav {
     opacity: 0.8;
 }
 
-/* Dropdown Menu Styles */
+/* Dropdown Menu Styles - 從導航列延伸效果 */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown Menu Styles - 真正的"長出來"效果 */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown Menu Styles - 完全重寫 */
 .dropdown {
     position: relative;
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 15px;
-    padding: 1.5rem;
-    min-width: 280px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    position: fixed; /* 改用fixed定位 */
+    top: 80px; /* 從header底部開始 */
+    left: 0; /* 從畫面左側開始 */
+    width: 100vw;
+    background: transparent;
+    color: #FCFAF2 !important;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 2.5rem 0;
+    z-index: 999; /* 確保在header下方 */
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+    overflow: hidden;
+    transform: translateY(-20px);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
+}
+
+.dropdown-menu .dropdown-content {
+    /* 保持空白，因為在HTML中存在但這裡不需要特別樣式 */
+}
+
+.dropdown-menu .dropdown-inner {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem; /* 與nav的padding對齊 */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .dropdown-menu a {
-    color: #434343;
-    font-weight: 400;
-    font-size: 0.95rem;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    margin: 0.2rem 0;
-    white-space: nowrap;
+    color: #FCFAF2 !important;
+    font-size: 1.15rem;
+    padding: 18px 0;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0;
+    display: block;
+    max-width: 700px;
+    margin: 0;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.4; /* 確保行高正常 */
+}
+
+.dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(252, 250, 242, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.dropdown-menu a:hover::before {
+    left: 100%;
 }
 
 .dropdown-menu a:hover {
-    background: rgba(101, 103, 101, 0.1);
-    color: #656765;
-    transform: translateX(5px);
+    background: rgba(255,255,255,0.08);
+    color: #fff !important;
 }
 
-/* Glass overlay effect when dropdown is open */
-.dropdown:hover ~ .glass-overlay,
-.dropdown:hover .glass-overlay {
-    opacity: 1;
-    visibility: visible;
-}
-
+/* Glass overlay effect - 簡化 */
 .glass-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-    pointer-events: none;
+    display: none; /* 暫時隱藏，因為現在header本身在延伸 */
 }
 
-/* Main Content */
+/* Main Content - 修復位置 */
 main {
-    margin-top: 80px;
+    margin-top: 80px; /* 回到正常的margin */
     min-height: calc(100vh - 160px);
+}
+
+/* 當dropdown打開時，調整main的位置避免重疊 */
+body:has(.dropdown:hover) main {
+    margin-top: 430px; /* 配合增加的header高度調整 */
+    transition: margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 確保過渡平滑 */
+main {
+    transition: margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page {
@@ -392,8 +439,8 @@ main {
 
 /* Footer */
 footer {
-    background: #FCFAF2;
-    color: #434343;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
     text-align: center;
     padding: 2rem 0;
     backdrop-filter: blur(10px);
@@ -422,7 +469,12 @@ footer {
     .course-grid {
         grid-template-columns: 1fr;
     }
+
+    .dropdown-menu .dropdown-inner {
+        padding: 2rem 1rem;
+    }
 }
+
 .right-nav {
-  margin-left: auto;
+    margin-left: auto;
 }
