@@ -23,13 +23,19 @@ header {
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     /* 設定過渡效果，讓header本身可以延伸 */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: padding-bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* 延伸稍微快一點 */
     overflow: visible;
 }
 
 /* 當有dropdown hover時，讓header延伸 */
 header:has(.dropdown:hover) {
     padding-bottom: 350px; /* 再增加一些高度，確保最後一個選單項目完全顯示 */
+    transition: padding-bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* 延伸保持相同速度 */
+}
+
+/* 當沒有hover時，快速收回 */
+header:not(:has(.dropdown:hover)) {
+    transition: padding-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 收回更快 */
 }
 
 nav {
@@ -116,7 +122,7 @@ nav {
     z-index: 999; /* 確保在header下方 */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 預設收回速度 */
     text-align: left;
     overflow: hidden;
     transform: translateY(-20px);
@@ -127,6 +133,7 @@ nav {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* 延伸時稍慢 */
 }
 
 .dropdown-menu .dropdown-content {
